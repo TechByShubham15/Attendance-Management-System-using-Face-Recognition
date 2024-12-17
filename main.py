@@ -18,6 +18,17 @@ os.makedirs(ATTENDANCE_DIR, exist_ok=True)
 # Global face recognizer
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+def center_window(window, width, height):
+    # Get the screen width and height
+    screen_width = window.winfo_screenwidth()
+    screen_height = window.winfo_screenheight()
+
+    # Calculate the position to center the window
+    position_top = int(screen_height / 2 - height / 2)
+    position_left = int(screen_width / 2 - width / 2)
+
+    # Set the position of the window
+    window.geometry(f'{width}x{height}+{position_left}+{position_top}')
 
 def capture_image(roll_no, name):
     """Capture and save face images for training."""
